@@ -51,6 +51,10 @@ public class LoginInterceptor implements HandlerInterceptor {
         String password = jsonObject.getString("password");
         String verifyCode = jsonObject.getString("verifyCode");
         LoginDto loginDto = LoginDto.builder().name(name).password(password).verifyCode(verifyCode).build();
+//        String name = request.getParameter("name");
+//        String password = request.getParameter("password");
+//        String verifyCode = request.getParameter("verifyCode");
+//        log.info(name + "+++++++++++++" + verifyCode);
         if (redisService.existsKey(name)) {
             //取得redis中的验证码
             String correctCode = redisService.getValue(name, String.class);
@@ -61,7 +65,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                 throw new CustomException("验证码错误", ResultCode.USER_VERIFY_CODE_ERROR);
             }
         } else {
-            throw new CustomException("验证码失效", ResultCode.USER_CODE_TIMEOUT);
+            throw new CustomException("用户名错误或验证码失效", ResultCode.USER_INPUT_ERROR);
         }
     }
 }

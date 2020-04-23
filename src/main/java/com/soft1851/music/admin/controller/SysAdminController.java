@@ -53,8 +53,8 @@ public class SysAdminController {
             List<SysRole> roles = admin.getRoles();
             String roleString = JSONObject.toJSONString(roles);
             log.info("管理员角色列表：" + roleString);
-            //这里先取一个role的角色名作为token加密依据了
-            String token = JwtTokenUtil.getToken(admin.getId(), roles.get(0).getRoleName(), new Date(System.currentTimeMillis() + 180L * 1000L));
+            //将该管理员的所有角色的集合roles存入token，在后面鉴权的时候从中查找，有效时间10分钟
+            String token = JwtTokenUtil.getToken(admin.getId(), JSONObject.toJSONString(roles), new Date(System.currentTimeMillis() + 600L * 1000L));
             map.put("admin", admin);
             map.put("token", token);
         } else {
