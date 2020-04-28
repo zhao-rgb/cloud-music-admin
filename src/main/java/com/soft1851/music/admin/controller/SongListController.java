@@ -1,7 +1,7 @@
 package com.soft1851.music.admin.controller;
 
 
-import com.soft1851.music.admin.entity.SongList;
+import com.soft1851.music.admin.domain.entity.SongList;
 import com.soft1851.music.admin.service.SongListService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,4 +46,8 @@ public class SongListController {
         return songListService.blurSelect(field);
     }
 
+    @GetMapping(value = "/export")
+    public void export() {
+        songListService.exportData();
+    }
 }

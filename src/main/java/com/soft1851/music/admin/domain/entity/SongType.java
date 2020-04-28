@@ -1,4 +1,4 @@
-package com.soft1851.music.admin.entity;
+package com.soft1851.music.admin.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
@@ -21,28 +21,40 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("user_song_list")
-public class UserSongList extends Model<UserSongList> {
+@TableName("song_type")
+public class SongType extends Model<SongType> {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户歌单id
+     * 类型id
      */
-    @TableId("id")
-    private String id;
+    @TableId("type_id")
+    private String typeId;
 
     /**
-     * 歌单id
+     *  类型名称
      */
-    @TableField("song_list_id")
-    private String songListId;
+    @TableField("type_name")
+    private String typeName;
 
     /**
-     * 用户id
+     * 歌曲数量
      */
-    @TableField("user_id")
-    private String userId;
+    @TableField("song_count")
+    private Integer songCount;
+
+    /**
+     * 删除标志
+     */
+    @TableField("delete_flag")
+    private String deleteFlag;
+
+    /**
+     * 修改时间
+     */
+    @TableField("update_time")
+    private LocalDateTime updateTime;
 
     /**
      * 创建时间
@@ -51,15 +63,15 @@ public class UserSongList extends Model<UserSongList> {
     private LocalDateTime createTime;
 
     /**
-     * 更新时间
+     * 分类
      */
-    @TableField("update_time")
-    private LocalDateTime updateTime;
+    @TableField("type")
+    private Integer type;
 
 
     @Override
     protected Serializable pkVal() {
-        return this.id;
+        return this.typeId;
     }
 
 }

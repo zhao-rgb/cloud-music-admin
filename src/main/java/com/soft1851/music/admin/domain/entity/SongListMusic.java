@@ -1,9 +1,9 @@
-package com.soft1851.music.admin.entity;
+package com.soft1851.music.admin.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;
+import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
 import lombok.Data;
@@ -21,52 +21,46 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("sys_menu")
-public class SysMenu extends Model<SysMenu> {
+@TableName("song_list_music")
+public class SongListMusic extends Model<SongListMusic> {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 主键
+     * id
      */
-    @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    @TableId("id")
+    private String id;
 
     /**
-     * 父级资源id，目录的parent_id为0
+     * 歌曲歌单id
      */
-    @TableField("parent_id")
-    private Integer parentId;
+    @TableField("song_list_id")
+    private String songListId;
 
     /**
-     * 资源类型：1 目录  2 菜单  3 按钮
+     * 歌曲id
      */
-    @TableField("type")
-    private Integer type;
+    @TableField("song_id")
+    private String songId;
 
     /**
-     * 资源名称
+     * 创建时间
      */
-    @TableField("title")
-    private String title;
+    @TableField("create_time")
+    private LocalDateTime createTime;
 
     /**
-     * 资源url
+     * 更新时间
      */
-    @TableField("path")
-    private String path;
+    @TableField("update_time")
+    private LocalDateTime updateTime;
 
     /**
-     * 资源图标
+     * 榜单排名
      */
-    @TableField("icon")
-    private String icon;
-
-    /**
-     * 排序号
-     */
-    @TableField("sort")
-    private Integer sort;
+    @TableField("ratio")
+    private Integer ratio;
 
 
     @Override

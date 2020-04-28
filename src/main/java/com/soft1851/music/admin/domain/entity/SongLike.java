@@ -1,4 +1,4 @@
-package com.soft1851.music.admin.entity;
+package com.soft1851.music.admin.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
@@ -21,16 +21,22 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("song_comment")
-public class SongComment extends Model<SongComment> {
+@TableName("song_like")
+public class SongLike extends Model<SongLike> {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * id
+     * 点赞id
      */
-    @TableId("id")
-    private String id;
+    @TableId("like_id")
+    private String likeId;
+
+    /**
+     * 点赞用户id
+     */
+    @TableField("user_id")
+    private String userId;
 
     /**
      * 歌曲id
@@ -39,16 +45,16 @@ public class SongComment extends Model<SongComment> {
     private String songId;
 
     /**
-     * userid
+     * 评论id
      */
-    @TableField("user_id")
-    private String userId;
+    @TableField("comment_id")
+    private String commentId;
 
     /**
-     * 评论内容
+     * 视频id
      */
-    @TableField("comment_content")
-    private String commentContent;
+    @TableField("video_id")
+    private String videoId;
 
     /**
      * 创建时间
@@ -68,22 +74,10 @@ public class SongComment extends Model<SongComment> {
     @TableField("song_list_id")
     private String songListId;
 
-    /**
-     * 视频id
-     */
-    @TableField("vido_id")
-    private String vidoId;
-
-    /**
-     * 点赞量
-     */
-    @TableField("like_counts")
-    private Integer likeCounts;
-
 
     @Override
     protected Serializable pkVal() {
-        return this.id;
+        return this.likeId;
     }
 
 }
