@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -40,6 +41,7 @@ public class SysAdmin extends Model<SysAdmin> {
     /**
      * 用户名
      */
+    @Size(max = 8,message = "用户名长度在8以内")
     @TableField("name")
     private String name;
 

@@ -2,6 +2,7 @@ package com.soft1851.music.admin.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.soft1851.music.admin.common.ResponseResult;
 import com.soft1851.music.admin.common.ResultCode;
 import com.soft1851.music.admin.domain.dto.LoginDto;
 import com.soft1851.music.admin.domain.entity.SysAdmin;
@@ -77,5 +78,21 @@ public class SysAdminServiceImpl extends ServiceImpl<SysAdminMapper, SysAdmin> i
     @Override
     public String getToken(String adminId, String roles, String secrect, Date expiresAt) {
         return JwtTokenUtil.getToken(adminId, roles, secrect, expiresAt);
+    }
+
+    /**
+     * 修改个人信息 姓名、密码、头像
+     * @param sysAdmin
+     * @return
+     */
+    @Override
+    public ResponseResult updateSysAdmin(SysAdmin sysAdmin) {
+        SysAdmin sysAdmin1 = sysAdminMapper.getSysAdminById(sysAdmin.getId());
+        String pass = Md5Util.getMd5(sysAdmin.getPassword(),true,32);
+        sysAdmin1.setName(sysAdmin.getName());
+        sysAdmin1.setPassword(pass);
+        sysAdmin1.setAvatar(sysAdmin.getAvatar());
+        sysAdminMapper.updateById(sysAdmin1);
+        return ResponseResult.success(sysAdmin1);
     }
 }

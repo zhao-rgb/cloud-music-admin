@@ -29,4 +29,12 @@ public interface SysAdminMapper extends BaseMapper<SysAdmin> {
      */
     @Select("SELECT * FROM sys_admin WHERE name = #{name}")
     SysAdmin getSysAdminByName(@Param("name") String name);
+
+    /**
+     * 根据id查询admin基础信息，用于个人信息，登录等.避开其中的List<SysRole>属性，因为它没有映射字段
+     * @param id
+     * @return
+     */
+    @Select("SELECT * FROM sys_admin WHERE id = #{id}")
+    SysAdmin getSysAdminById(@Param("id") String id);
 }
