@@ -1,6 +1,8 @@
 package com.soft1851.music.admin.filter;
 
 import com.soft1851.music.admin.handler.RequestWrapper;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.annotation.Order;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -14,9 +16,10 @@ import java.io.IOException;
  * @Date 2020/4/21
  * @Version 1.0
  **/
-@WebFilter(urlPatterns = "/*", filterName = "channelFilter")
-public class ChannelFilter implements Filter {
-
+@Order(1)
+@WebFilter(filterName = "myFilter", urlPatterns = "/*")
+@Slf4j
+public class MyFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 

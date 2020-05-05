@@ -1,8 +1,8 @@
 package com.soft1851.music.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.soft1851.music.admin.common.ResponseResult;
 import com.soft1851.music.admin.domain.dto.LoginDto;
+import com.soft1851.music.admin.domain.dto.SysAdminDto;
 import com.soft1851.music.admin.domain.entity.SysAdmin;
 
 import java.util.Date;
@@ -44,9 +44,23 @@ public interface SysAdminService extends IService<SysAdmin> {
     String getToken(final String adminId, final String roles, final String secrect, Date expiresAt);
 
     /**
-     * 修改个人信息数据
-     * @param sysAdmin
+     * 管理员修改信息
+     * @param sysAdminDto
+     * @return boolean
+     */
+    boolean updateInfo(SysAdminDto sysAdminDto);
+
+    /**
+     * 根据id获取admin
+     * @param id
+     * @return SysAdminDto
+     */
+    SysAdmin getSysAdminById(String id);
+
+    /**
+     * 改头像
+     * @param sysAdminDto
      * @return
      */
-    ResponseResult updateSysAdmin(SysAdmin sysAdmin);
+    boolean updateAvatar(SysAdminDto sysAdminDto);
 }

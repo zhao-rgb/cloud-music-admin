@@ -29,7 +29,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         //拦截路径可自行配置多个 可用 ，分隔开
         registry.addInterceptor(loginInterceptor).addPathPatterns("/sysAdmin/login").excludePathPatterns("/static/**");
-        registry.addInterceptor(jwtInterceptor).addPathPatterns("/**").excludePathPatterns("/sysAdmin/login","/captcha","/songList/list","/songList/page","/songList/type","/songList/select","/songList/export","/song/list","/song/select","/song/export","/api/hello","/sysAdmin/update").excludePathPatterns("/static/**");
+        registry.addInterceptor(jwtInterceptor).addPathPatterns("/**").excludePathPatterns("/sysAdmin/login","/captcha","/songList/list","/songList/page","/songList/type","/songList/select","/songList/export","/song/list","/song/select","/song/export","/sysAdmin/{id}","/sysAdmin/profile","/sysAdmin/upload","/oauth2/code/github").excludePathPatterns("/static/**");
     }
 
 }
